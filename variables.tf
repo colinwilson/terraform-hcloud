@@ -35,7 +35,7 @@ variable "ansible_dependencies_install_command" {
   default = "sudo yum install -y python36"
 }
 variable "run_ansible_playbook" {
-  default = true
+  default = false
 }
 variable "post_ansible_ssh_user" {
   default = "deploy"
