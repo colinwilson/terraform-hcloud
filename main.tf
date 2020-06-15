@@ -30,15 +30,12 @@ resource "hcloud_server" "server" {
   location    = each.value.location
   backups     = each.value.backups
   ssh_keys    = [var.ssh_public_key_name]
-  user_data   = templatefile("${path.module}/user_data/${each.value.image}.yaml", {
-    floating_ip = hcloud_floating_ip.default.ip_address
-  })
+  user_data   = templatefile("${path.module}/user_data/${each.value.image}.yaml")
 
   provisioner "remote-exec" {
     inline = [
       "cloud-init status --wait --long > /dev/null",
       var.run_rancher_deploy ? "${var.rancher_node_command} ${each.value.roles} --internal-address ${each.value.private_ip_address}" : "",
-      "service networking restart"
     ]
 
     connection {

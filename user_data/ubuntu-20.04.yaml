@@ -3,15 +3,17 @@ package_update: true
 package_upgrade: true
 package_reboot_if_required: false
 
-# Configure Floating IP (Ubuntu 18.04 LTS)
+# Configure Floating IP (Ubuntu 20.04 LTS)
 # Not required when using https://github.com/costela/hcloud-ip-floater
 #write_files:
 #  - content: |
-#      auto eth0:1
-#      iface eth0:1 inet static
-#          address ${floating_ip}
-#          netmask 32
-#    path: /etc/network/interfaces.d/60-my-floating-ip.cfg
+#      network:
+#         version: 2
+#         ethernets:
+#           eth0:
+#             addresses:
+#             - ${floating_ip}/32
+#    path: /etc/netplan/60-floating-ip.yaml
 
 # Install required packages
 packages:
