@@ -30,7 +30,7 @@ resource "hcloud_server" "server" {
   location    = each.value.location
   backups     = each.value.backups
   ssh_keys    = [var.ssh_public_key_name]
-  user_data   = templatefile("${path.module}/user_data/${each.value.image}.yaml")
+  user_data   = file("${path.module}/user_data/${each.value.image}.yaml")
 
   provisioner "remote-exec" {
     inline = [
