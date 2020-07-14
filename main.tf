@@ -13,17 +13,15 @@ resource "hcloud_network_subnet" "default" {
   type         = "server"
   network_zone = var.private_network_zone
   ip_range     = var.private_ip_range
-
-  depends_on   = [
-    hcloud_server_network.server_network,
-  ]
 }
 
+/*
 resource "hcloud_floating_ip" "default" {
   type          = "ipv4"
   home_location = var.hcloud_location
   name          = var.floating_ip_name
 }
+*/
 
 resource "hcloud_server" "server" {
   for_each = var.servers
@@ -57,5 +55,9 @@ resource "hcloud_server_network" "server_network" {
   network_id = hcloud_network.default.id
   server_id  = hcloud_server.server[each.key].id
   ip         = each.value.private_ip_address
+
+  depends_on   = [
+    hcloud_network_subnet.default,
+  ]
 }
 
