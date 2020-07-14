@@ -13,6 +13,10 @@ resource "hcloud_network_subnet" "default" {
   type         = "server"
   network_zone = var.private_network_zone
   ip_range     = var.private_ip_range
+
+  depends_on   = [
+    hcloud_server_network.server_network,
+  ]
 }
 
 resource "hcloud_floating_ip" "default" {
