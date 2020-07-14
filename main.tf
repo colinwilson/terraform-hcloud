@@ -15,13 +15,13 @@ resource "hcloud_network_subnet" "default" {
   ip_range     = var.private_ip_range
 }
 
-
+/*
 resource "hcloud_floating_ip" "default" {
   type          = "ipv4"
   home_location = var.hcloud_location
   name          = var.floating_ip_name
 }
-
+*/
 
 resource "hcloud_server" "server" {
   for_each = var.servers
