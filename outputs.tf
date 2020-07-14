@@ -5,6 +5,8 @@ output "server_ips" {
   }
 }
 
+/*
 output "floating_ip" {
   value = hcloud_floating_ip.default.ip_address
 }
+*/
