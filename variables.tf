@@ -12,7 +12,7 @@ variable "hcloud_location" {
   default = "hel1"
 }
 variable "private_ip_range" {
-  default = "10.0.0.0/8"
+  default = "10.0.0.0/16"
 }
 variable "ssh_public_key_name" {
   default = "default"
