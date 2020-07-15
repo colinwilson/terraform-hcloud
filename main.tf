@@ -57,6 +57,8 @@ resource "hcloud_server_network" "server_network" {
   ip         = each.value.private_ip_address
 
   depends_on = [
-    hcloud_server.server
+    hcloud_server.server,
+    hcloud_network_subnet.default,
+    hcloud_network.default
   ]
 }
