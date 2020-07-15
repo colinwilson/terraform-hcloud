@@ -55,4 +55,8 @@ resource "hcloud_server_network" "server_network" {
   network_id = hcloud_network.default.id
   server_id  = hcloud_server.server[each.key].id
   ip         = each.value.private_ip_address
+
+  depends_on = [
+    hcloud_server.server
+  ]
 }
