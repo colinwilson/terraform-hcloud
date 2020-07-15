@@ -3,14 +3,6 @@ resource "hcloud_ssh_key" "default" {
   public_key = var.ssh_public_key
 }
 
-resource "hcloud_server_network" "server_network" {
-  for_each = var.servers
-
-  network_id = hcloud_network.default.id
-  server_id  = hcloud_server.server[each.key].id
-  ip         = each.value.private_ip_address
-}
-
 resource "hcloud_network" "default" {
   name     = var.private_network_name
   ip_range = var.private_ip_range
@@ -57,3 +49,10 @@ resource "hcloud_server" "server" {
   }
 }
 
+resource "hcloud_server_network" "server_network" {
+  for_each = var.servers
+
+  network_id = hcloud_network.default.id
+  server_id  = hcloud_server.server[each.key].id
+  ip         = each.value.private_ip_address
+}
