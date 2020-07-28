@@ -52,14 +52,7 @@ resource "hcloud_server" "server" {
 resource "hcloud_server_network" "server_network" {
   for_each = var.servers
 
-  network_id = hcloud_network.default.id
+  subnet_id  = hcloud_network_subnet.default.id
   server_id  = hcloud_server.server[each.key].id
   ip         = each.value.private_ip_address
-
-  depends_on = [
-    hcloud_server.server,
-    hcloud_network_subnet.default,
-    hcloud_network.default,
-    hcloud_ssh_key.default
-  ]
 }
