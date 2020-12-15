@@ -8,9 +8,9 @@ variable "rancher_node_command" {}
 
 # Optional configuration
 
-variable "hcloud_location" {
-  default = "hel1"
-}
+# variable "hcloud_location" {
+#   default = "hel1"
+# }
 variable "private_ip_range" {
   default = "10.0.0.0/16"
 }
